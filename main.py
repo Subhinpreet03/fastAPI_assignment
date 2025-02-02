@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 # 🔹 Add Session Middleware (REQUIRED for OAuth)
-app.add_middleware(SessionMiddleware, secret_key="your_secret_key")
+app.add_middleware(SessionMiddleware, secret_key="secret_key")
 
 
 ALLOWED_HOSTS = ["*"]

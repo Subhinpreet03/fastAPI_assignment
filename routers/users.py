@@ -15,7 +15,7 @@ GOOGLE_CERTS_URL = "https://www.googleapis.com/oauth2/v3/certs"
 router = APIRouter(prefix="/users", tags=["Users"])
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 
-SECRET_KEY = "e$6Xr!Z9w*qNmP*VeH2v7kLq#8DbzqGh2aLbI4HnQFvX6cKoV7V8J$YrHhF7#8@c"
+SECRET_KEY = "secret_key"
 ALGORITHM = "HS256"
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")  # Ensure you load this in your environment
 GOOGLE_USERINFO_URL = "https://www.googleapis.com/oauth2/v3/userinfo"
