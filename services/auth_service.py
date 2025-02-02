@@ -32,11 +32,16 @@ async def create_user(db: AsyncSession, user_data: dict):
 
 
 def create_access_token(data: dict, expires_delta: timedelta = None):
-    """Generate a JWT access token"""
-    to_encode = data.copy()
-    expire = datetime.utcnow() + (expires_delta or timedelta(minutes=30))
+    """Generate JWT token"""
+    if not isinstance(data, dict):
+        raise ValueError("data must be a dictionary")
+
+    to_encode = data.copy()  # ✅ Now safe to copy
+    expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     to_encode.update({"exp": expire})
-    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
 
 
 def blacklist_token(token: str):

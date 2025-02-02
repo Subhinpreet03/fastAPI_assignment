@@ -68,7 +68,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: AsyncSession
     try:
         # 🔹 Try decoding as a local JWT first
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        username: str = payload.get("sub")
+        username: str = payload.get("username", 'None')
     except JWTError:
         # 🔹 If decoding fails, check if it's a Google token
         payload = await verify_google_token(token)
